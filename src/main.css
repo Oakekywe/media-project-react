@@ -1,0 +1,11 @@
+*{
+   font-family: "padauk";
+}
+a{
+   text-decoration: none;
+   color:grey;
+}
+.para{
+   text-align:justify;
+   line-height:30px;
+}
