@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux"
 
 export default function SlideImg({ image, active, alt, title, desc }) {
    return (
