@@ -22,8 +22,18 @@ const siteDataReducer = (state = initialData, { type, payload }) => {
   }
 };
 
+export const userReducer = (state=null, {type, payload})=>{
+  switch(type){
+    case "userAdd" : return state = payload;
+    case "userRemove" : return state = payload;
+    default:
+      return state;
+  }
+}
+
 const reducers = combineReducers({
   siteData: siteDataReducer,
+  userData: userReducer
 });
 
 export default reducers;

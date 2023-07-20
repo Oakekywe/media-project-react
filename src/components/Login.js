@@ -2,13 +2,17 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API_URL from "./shares/Api";
 import Loading from "./shares/Loading";
+import { addUser, removeUser } from "../redux/action";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Login() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.userData);
+console.log("before", userData);
   const apiLogin = async (user) => {
     let res = await fetch(API_URL + "/login", {
       method: "POST",
@@ -17,8 +21,11 @@ export default function Login() {
     });
 
     const data = await res.json();
+    console.log("data", data);
     if (data.con) {
       navigate("/admin");
+      dispatch(addUser(data.data));
+      console.log(userData);
     } else {
       console.log("errors:", data.message);
     }

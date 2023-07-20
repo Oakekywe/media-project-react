@@ -1,8 +1,18 @@
 import React from "react";
-import logoImg from "../../statics/logo.png"
-import { Link } from "react-router-dom";
+import logoImg from "../../statics/logo.png";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser } from "../../redux/action";
 
 function Nav() {
+  const userData = useSelector((state) => state.userData);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const logout = () => {
+    dispatch(removeUser(null));
+    navigate("/login");
+  };
+
   return (
     <div className="contaner-fluid bg-dark">
       <nav className="container navbar navbar-expand-lg navbar-light">
@@ -57,28 +67,28 @@ function Nav() {
                   <i className="fa fa-user"></i>
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  {/* {!loggedIn && ( */}
+                  {!userData && (
                     <li>
                       <Link to="/login" className="dropdown-item">
                         Login
                       </Link>
                     </li>
-                  {/* )} */}
-                  {/* {!loggedIn && ( */}
+                  )}
+                  {!userData && (
                     <li>
                       {" "}
                       <Link to="/register" className="dropdown-item">
                         Register
                       </Link>
                     </li>
-                  {/* )} */}
-                  {/* {loggedIn && (
+                  )}
+                  {userData && (
                     <li>
                       <a className="dropdown-item linkDisable" onClick={logout}>
                         Logout
                       </a>
                     </li>
-                  )} */}
+                  )}
                 </ul>
               </li>
             </ul>
