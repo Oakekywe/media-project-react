@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import API_URL from "../../shares/Api";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import Loading from "../../shares/Loading";
 
 const EditCat = () => {
   const [name, setName] = useState("");
-  const [file, setFile] = useState("");
+  // const [file, setFile] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const userData = useSelector((state) => state.userData);
   const navigate = useNavigate();
@@ -15,9 +17,11 @@ const EditCat = () => {
     let res = await fetch(API_URL + `/cats/${id}`);
     let data = await res.json();
     setName(data.data.name);
+    setIsLoading(false);
   };
 
   useEffect(() => {
+    setIsLoading(true);
     loadCategory();
   }, []);
 
@@ -26,7 +30,7 @@ const EditCat = () => {
       method: "PATCH",
       body: JSON.stringify({ name: name }),
       headers: {
-        "content-type":"application/json",
+        "content-type": "application/json",
         authorization: `Bearer ${userData.token}`,
       },
     });
@@ -36,16 +40,18 @@ const EditCat = () => {
     } else {
       console.log("errors");
     }
+    setIsLoading(false);
   };
 
   const catSubmit = (e) => {
+    setIsLoading(true);
     e.preventDefault();
     apiCategoryUpdate();
   };
   return (
     <div>
       <div className="container my-5">
-        {/* {loading && <Loading />} */}
+        {isLoading && <Loading />}
         <div className="col-md-6 mt-5 offset-md-3 bg-dark p-5">
           <h1 className="text-white text-center">Edit Category</h1>
           <form onSubmit={catSubmit}>

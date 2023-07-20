@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const UiCat = ({ cat }) => {
+const UiCat = ({ cat, apiDeleteCat }) => {
   return (
     <div className="col-md-4">
       <div className="card">
@@ -18,7 +18,10 @@ const UiCat = ({ cat }) => {
               >
                 <i className="fa fa-edit" />
               </Link>
-              <button className="btn btn-sm btn-danger">
+              <button
+                className="btn btn-sm btn-danger"
+                onClick={() => apiDeleteCat(cat.id)}
+              >
                 <i className="fa fa-trash" />
               </button>
             </div>

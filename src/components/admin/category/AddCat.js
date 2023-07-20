@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import API_URL from "../../shares/Api";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../shares/Loading";
 
 const AddCat = () => {
   const [name, setName] = useState("");
   const [file, setFile] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const userData = useSelector((state) => state.userData);
   const navigate = useNavigate();
 
@@ -31,16 +33,18 @@ const AddCat = () => {
     } else {
       console.log("errors");
     }
+    setIsLoading(false);
   };
 
   const catSubmit = (e) => {
+    setIsLoading(true);
     e.preventDefault();
     apiCategoryAdd();
   };
   return (
     <div>
       <div className="container my-5">
-        {/* {loading && <Loading />} */}
+        {isLoading && <Loading />}
         <div className="col-md-6 mt-5 offset-md-3 bg-dark p-5">
           <h1 className="text-white text-center">Create Category</h1>
           <form onSubmit={catSubmit}>
