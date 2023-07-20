@@ -10,7 +10,6 @@ export default function Login() {
   const navigate = useNavigate();
 
   const apiLogin = async (user) => {
-
     let res = await fetch(API_URL + "/login", {
       method: "POST",
       body: JSON.stringify(user),
@@ -19,11 +18,11 @@ export default function Login() {
 
     const data = await res.json();
     if (data.con) {
-      setIsLoading(false);
       navigate("/admin");
     } else {
       console.log("errors:", data.message);
     }
+    setIsLoading(false);
   };
 
   const loginUser = (e) => {

@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API_URL from "./shares/Api";
+import Loading from "./shares/Loading";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const apiLogin = async (user) => {
+  const apiRegister = async (user) => {
     let res = await fetch(API_URL + "/users", {
       method: "POST",
       body: JSON.stringify(user),
@@ -23,17 +25,20 @@ export default function Register() {
     } else {
       console.log("error", data.errors);
     }
+    setIsLoading(false);
   };
 
   const loginUser = (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     let user = {
       name,
       email,
       password,
       phone,
     };
-    apiLogin(user);
+    apiRegister(user);
 
     setEmail("");
     setName("");
@@ -43,6 +48,7 @@ export default function Register() {
 
   return (
     <div className="container my-5">
+      {isLoading && <Loading />}
       <div className="col-md-6 mt-5 offset-md-3 bg-dark p-5">
         <h1 className="text-white text-center">Register To Be A Member</h1>
         <form onSubmit={loginUser}>
