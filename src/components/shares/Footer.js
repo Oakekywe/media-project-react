@@ -69,9 +69,9 @@ export default function Footer() {
                   placeholder="Emial"
                 />
               </div>
-              <div class="mb-1">
+              <div className="mb-1">
                 <textarea
-                  class="form-control  bg-dark text-white rounded-0"
+                  className="form-control  bg-dark text-white rounded-0"
                   id="content"
                   rows="3"
                 ></textarea>
