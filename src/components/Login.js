@@ -1,32 +1,42 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import API_URL from "./shares/Api";
+import Loading from "./shares/Loading";
 
 export default function Login() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const apiLogin = async (user) => {
+
     let res = await fetch(API_URL + "/login", {
       method: "POST",
       body: JSON.stringify(user),
       headers: { "content-type": "application/json" },
     });
+
     const data = await res.json();
-    console.log("loogin api", data);
+    if (data.con) {
+      setIsLoading(false);
+      navigate("/admin");
+    } else {
+      console.log("errors:", data.message);
+    }
   };
 
   const loginUser = (e) => {
     e.preventDefault();
-    let user = {
-      phone,
-      password,
-    };
+    setIsLoading(true);
+
+    let user = { phone, password };
     apiLogin(user);
   };
 
   return (
     <div className="container my-5">
+      {isLoading && <Loading />}
       <div className="col-md-6 mt-5 offset-md-3 bg-dark p-5">
         <h1 className="text-white text-center">Login To Post</h1>
         <form onSubmit={loginUser}>

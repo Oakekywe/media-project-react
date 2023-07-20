@@ -1,11 +1,21 @@
-*{
-   font-family: "padauk";
+* {
+  font-family: "padauk";
 }
-a{
-   text-decoration: none;
-   color:grey;
+a {
+  text-decoration: none;
+  color: grey;
 }
-.para{
-   text-align:justify;
-   line-height:30px;
+.para {
+  text-align: justify;
+  line-height: 30px;
+}
+.loadingBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-100px, -75px);
+}
+.loadingBox > img {
+  width: 200px;
+  height: 150px;
 }
