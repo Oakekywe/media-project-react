@@ -9,14 +9,14 @@ const AllCat = () => {
   const loadCats = async () => {
     let res = await fetch(API_URL + "/cats");
     let data = await res.json();
-    console.log("cat data", data.data);
+
     if (data.con) {
       setCats(data.data);
     } else {
       console.log("errors");
     }
   };
-console.log("cats", cats);
+
   useEffect(() => {
     loadCats();
   }, []);
