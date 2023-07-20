@@ -6,13 +6,13 @@ import { addUser, removeUser } from "../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Login() {
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("12345678");
+  const [password, setPassword] = useState("12345678");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userData);
-console.log("before", userData);
+
   const apiLogin = async (user) => {
     let res = await fetch(API_URL + "/login", {
       method: "POST",
@@ -21,7 +21,7 @@ console.log("before", userData);
     });
 
     const data = await res.json();
-    console.log("data", data);
+
     if (data.con) {
       navigate("/admin");
       dispatch(addUser(data.data));

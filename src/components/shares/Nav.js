@@ -48,13 +48,13 @@ function Nav() {
                   နိုင်ငံတကာ
                 </a>
               </li>
-              {/* {loggedIn && (
+              {userData && (
                 <li className="nav-item">
                   <Link to="/admin" className="nav-link text-white">
                     Admin Panel
                   </Link>
                 </li>
-              )} */}
+              )}
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle text-white"
