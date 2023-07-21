@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../../shares/Loading";
 
-const EditCat = () => {
+const EditTag = () => {
   const [name, setName] = useState("");
   // const [file, setFile] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -13,8 +13,8 @@ const EditCat = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const loadCategory = async () => {
-    let res = await fetch(API_URL + `/cats/${id}`);
+  const loadTag = async () => {
+    let res = await fetch(API_URL + `/tags/${id}`);
     let data = await res.json();
     setName(data.data.name);
     setIsLoading(false);
@@ -22,11 +22,11 @@ const EditCat = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    loadCategory();
+    loadTag();
   }, []);
 
-  const apiCategoryUpdate = async () => {
-    let res = await fetch(API_URL + `/cats/${id}`, {
+  const apiTagUpdate = async () => {
+    let res = await fetch(API_URL + `/tags/${id}`, {
       method: "PATCH",
       body: JSON.stringify({ name: name }),
       headers: {
@@ -36,25 +36,25 @@ const EditCat = () => {
     });
     let data = await res.json();
     if (data.con) {
-      navigate("/admin/cats/all");
+      navigate("/admin/tags/all");
     } else {
       console.log("errors");
     }
     setIsLoading(false);
   };
 
-  const catSubmit = (e) => {
+  const tagSubmit = (e) => {
     setIsLoading(true);
     e.preventDefault();
-    apiCategoryUpdate();
+    apiTagUpdate();
   };
   return (
     <div>
       <div className="container my-5">
         {isLoading && <Loading />}
         <div className="col-md-6 mt-5 offset-md-3 bg-dark p-5">
-          <h1 className="text-white text-center">Edit Category</h1>
-          <form onSubmit={catSubmit}>
+          <h1 className="text-white text-center">Edit Tag</h1>
+          <form onSubmit={tagSubmit}>
             <div className="mb-3">
               <label htmlFor="name" className="form-label text-white">
                 Name
@@ -88,4 +88,4 @@ const EditCat = () => {
   );
 };
 
-export default EditCat;
+export default EditTag;

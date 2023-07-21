@@ -7,7 +7,7 @@ import Loading from "../../shares/Loading";
 const AddCat = () => {
   const [name, setName] = useState("");
   const [file, setFile] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const userData = useSelector((state) => state.userData);
   const navigate = useNavigate();
 
@@ -76,6 +76,7 @@ const AddCat = () => {
               <button
                 type="reset"
                 className="btn btn-outline-warning btn-sm mx-2 text-white"
+                onClick={() => navigate(-1)}
               >
                 Cancle
               </button>
