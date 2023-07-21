@@ -13,6 +13,9 @@ import EditCat from "./components/admin/category/EditCat";
 import AllTag from "./components/admin/tag/AllTag";
 import EditTag from "./components/admin/tag/EditTag";
 import AddTag from "./components/admin/tag/AddTag";
+import AllPost from "./components/admin/post/AllPost";
+import EditPost from "./components/admin/post/EditPost";
+import AddPost from "./components/admin/post/AddPost";
 
 function App() {
   return (
@@ -39,6 +42,11 @@ function App() {
             <Route path="all" element={<AllTag />} />
             <Route path="add" element={<AddTag />} />
             <Route path="edit/:id" element={<EditTag />} />
+          </Route>
+          <Route path="posts">
+            <Route path="all" element={<AllPost />} />
+            <Route path="add" element={<AddPost />} />
+            <Route path="edit/:id" element={<EditPost />} />
           </Route>
         </Route>
         <Route />

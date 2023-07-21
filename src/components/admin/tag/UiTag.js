@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const UiTag = ({ tag, apiDeleteTag }) => {
   return (
-    <div className="col-md-4">
+    <div className="col-md-4 my-2">
       <div className="card">
         <div className="card-body">
           <div className="row">

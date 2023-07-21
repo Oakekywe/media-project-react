@@ -23,3 +23,6 @@ a {
 .fixHeight {
   min-height: 500px;
 }
+p{
+ font-size: 15px;
+}
