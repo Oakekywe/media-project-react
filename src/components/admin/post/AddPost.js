@@ -27,7 +27,6 @@ export default function PostAdd() {
     formData.append("content", content);
     formData.append("category_id", selectedCat);
     formData.append("tag_id", selectedTag);
-    formData.append("content", content);
     formData.append("user_id", userData.id);
     formData.append("image", file);
 
