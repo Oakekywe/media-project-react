@@ -29,7 +29,7 @@ export default function EditPost() {
     setContent(data.data.content);
     setSelectedCat(data.data.category_id);
     setSelectedTag(data.data.tag_id);
-    setFile(data.data.image)
+    setFile(data.data.image);
     setIsLoading(false);
   };
 
@@ -42,13 +42,13 @@ export default function EditPost() {
 
   //api post
   const apiPostEdit = async () => {
-    const postData = { 
-      title : title, 
+    const postData = {
+      title: title,
       content: content,
-      category_id: selectedCat, 
+      category_id: selectedCat,
       tag_id: selectedTag,
       user_id: userData.id,
-      image: file
+      image: file,
     };
 
     let res = await fetch(API_URL + `/posts/${id}`, {
@@ -59,7 +59,7 @@ export default function EditPost() {
       },
     });
     let data = await res.json();
-
+    console.log(data);
     if (data.con) {
       navigate("/admin/posts/all");
     } else {

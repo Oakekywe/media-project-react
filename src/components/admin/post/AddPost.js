@@ -35,6 +35,7 @@ export default function PostAdd() {
       body: formData,
     });
     let data = await res.json();
+    console.log(data);
 
     if (data.con) {
       navigate("/admin/posts/all");
@@ -109,12 +110,15 @@ export default function PostAdd() {
                 id="catselect"
                 onChange={(e) => setSelectedCat(e.target.value)}
               >
-                {cats.length > 0 ?
+                {cats.length > 0 ? (
                   cats.map((cat) => (
                     <option key={cat.id} value={cat.id}>
                       {cat.name}
                     </option>
-                  )): <option>No Category Found</option>}
+                  ))
+                ) : (
+                  <option>No Category Found</option>
+                )}
               </select>
             </div>
 
@@ -127,12 +131,15 @@ export default function PostAdd() {
                 id="tagselect"
                 onChange={(e) => setSelectedTag(e.target.value)}
               >
-                {tags.length > 0 ?
+                {tags.length > 0 ? (
                   tags.map((tag) => (
                     <option key={tag.id} value={tag.id}>
                       {tag.name}
                     </option>
-                  )): <option>No Tag Found</option>}
+                  ))
+                ) : (
+                  <option>No Tag Found</option>
+                )}
               </select>
             </div>
 

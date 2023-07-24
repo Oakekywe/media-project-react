@@ -11,7 +11,7 @@ const UiPost = ({ post, apiDeletePost }) => {
               <img src={post.image} width="100%" />
             </div>
             <div className="col-md-7">
-              <h5>{post.title}</h5>
+              <h5>{post.title.substring(0,30)}</h5>
               <p>{post.content.substring(0,40)}</p>
               <Link
                 to={`/admin/posts/edit/${post.id}`}
