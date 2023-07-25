@@ -115,9 +115,10 @@ export default function Home() {
               Read More
             </button>
           </div>
-          <SideNews image={p1} />
-          <SideNews image={p1} />
-          <SideNews image={p1} />
+          {hotNews.length > 0 &&
+              hotNews.map((hn) => (
+                <SideNews key={hn.id} post={hn} wordcount={50} />
+              ))}
           <div className="mt-3 bg-dark p-2 d-flex justify-content-between">
             <button className="btn btn-danger btn-sm rounded-0">TV NEWS</button>
             <button className="btn btn-danger btn-sm rounded-0">

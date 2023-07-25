@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logoImg from "../../statics/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser } from "../../redux/action";
+import API_URL from "./Api";
 
 function Nav() {
   const userData = useSelector((state) => state.userData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [cats, setCats] = useState([]);
+
+  const loadCats = async () => {
+    let res = await fetch(API_URL + "/cats");
+    let data = await res.json();
+
+    if (data.con) {
+      setCats(data.data);
+    } else {
+      console.log("errors");
+    }
+  };
+
+  useEffect(()=>{loadCats()},[])
+
+
   const logout = () => {
     dispatch(removeUser(null));
     navigate("/login");
@@ -34,20 +52,12 @@ function Nav() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a
-                  className="nav-link active text-white"
-                  aria-current="page"
-                  href="#"
-                >
-                  ပြည်တွင်း
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white" href="#">
-                  နိုင်ငံတကာ
-                </a>
-              </li>
+                {cats.length > 0 && cats.map((cat) => <li key={cat.id} className="nav-item">
+                <Link className="nav-link active text-white" to={`/cat-page/by-cat/${cat.id}`}>
+                  {cat.name}
+                </Link>
+              </li>)}
+              
               {userData && (
                 <li className="nav-item">
                   <Link to="/admin" className="nav-link text-white">

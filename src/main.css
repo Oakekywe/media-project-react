@@ -23,6 +23,21 @@ a {
 .fixHeight {
   min-height: 500px;
 }
-p{
- font-size: 15px;
+p {
+  font-size: 15px;
+}
+.parafontsize {
+  font-size: 14px;
+  line-height: 30px;
+}
+.titlefontsize {
+  font-size: 19px;
+  font-weight: bold;
+}
+.hotnews {
+  font-size: 14px;
+  line-height: 30px;
+  text-indent: 45px;
+  margin-top: 25px;
+  text-align: justify;
 }
